@@ -21,8 +21,8 @@ links = pages.find_all('a') #ищем ссылки в найденных стр�
 for link in links:
     # Проверяем, является ли текст ссылки числом
     if link.text.strip().isdigit(): #нам нужны числа, тоесть 1,2,3,4,5,6... на этом сайте так, ну и на других
-        page_url = link.get('href') #добавлем href
-        # Добавляем полный URL, если он не None
+        page_url = link.get('href') #получаем значение атрибута href(адрес страницы)
+        
         if page_url:
             urls.append(page_url)
 
@@ -31,7 +31,7 @@ unique_urls = list(set(urls)) #с помощью set делаем множест
 
 for slug in unique_urls:
     new_url = url + slug  # Собираем полный URL
-    response = requests.get(new_url)
+    response = requests.get(new_url) #запрос по ссылке, которую мы собрали
     soup = BeautifulSoup(response.text, 'lxml') 
     items = soup.find_all('div', class_='w-full rounded border') #нашли что надо
     for i in items: # красиво выводим

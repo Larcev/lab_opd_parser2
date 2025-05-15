@@ -15,7 +15,7 @@ for n, i in enumerate(items, start = 1): # перебор из списка item
 
 
 pages = soup.find('nav', class_='pagination') #ищем остальные страницы 
-urls = []
+urls = [] # сюда засунем все ссылки позже
 links = pages.find_all('a') #ищем ссылки в найденных страницах
 
 for link in links:
